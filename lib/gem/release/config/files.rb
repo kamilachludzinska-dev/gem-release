@@ -7,12 +7,8 @@ module Gem
       class Files
         include Helper::Hash
 
-        PATHS = %w(
-          ./.gem_release/config.yml
-          ./.gem_release.yml
-          ~/.gem_release/config.yml
-          ~/.gem_release.yml
-        )
+        FOLDERS = %w[./ ~/]
+        FILES = %w[.gem_release/config.yml .gem_release.yml]
 
         def load
           return {} unless path
@@ -26,8 +22,14 @@ module Gem
           end
 
           def paths
-            paths = PATHS.map { |path| File.expand_path(path) }
+            paths = combine_paths.map { |path| File.expand_path(path) }
             paths.select { |path| File.exist?(path) }
+          end
+
+          def combine_paths
+            FOLDERS.product(FILES).map do |folder, file|
+              File.join(folder, file)
+            end
           end
       end
     end
