@@ -7,7 +7,6 @@ module Gem
       class Files
         include Helper::Hash
 
-        FOLDERS = %w[./ ~/]
         FILES = %w[.gem_release/config.yml .gem_release.yml]
 
         def load
@@ -26,8 +25,15 @@ module Gem
             paths.select { |path| File.exist?(path) }
           end
 
+          def xdg_config_home
+            home_config =  File.join(ENV.fetch('HOME'), '.config')
+            ENV.fetch('XDG_CONFIG_HOME', home_config)
+          end
+
           def combine_paths
-            FOLDERS.product(FILES).map do |folder, file|
+            folders = ['./', xdg_config_home, '~/']
+
+            folders.product(FILES).map do |folder, file|
               File.join(folder, file)
             end
           end
