@@ -45,17 +45,17 @@ describe Gem::Release::Config do
         it { should eq xdg_config }
       end
 
-      describe 'set to /conf' do
-        env XDG_CONFIG_HOME: '/conf'
-        before { write '/conf/.gem_release.yml', YAML.dump(xdg_config) }
+      describe 'set to ~/.my-little-config' do
+        env XDG_CONFIG_HOME: '~/.my-little-config'
+        before { write '~/.my-little-config/.gem_release.yml', YAML.dump(xdg_config) }
         it { should eq xdg_config }
       end
     end
 
-    describe 'all three ./.gem_release.yml, XDG_CONFIG_HOME and ~/.gem_release.yml' do
+    describe 'all three ./.gem_release.yml, XDG_CONFIG_HOME, and ~/.gem_release.yml' do
       before { write './.gem_release.yml', YAML.dump(local) }
-      env XDG_CONFIG_HOME: '/conf'
-      before { write '/conf/.gem_release.yml', YAML.dump(xdg_config) }
+      env XDG_CONFIG_HOME: '~/.my-little-config'
+      before { write '~/.my-little-config/.gem_release.yml', YAML.dump(xdg_config) }
       before { write '~/.gem_release.yml', YAML.dump(global) }
       it { should eq local }
     end
@@ -66,9 +66,9 @@ describe Gem::Release::Config do
         before { write '~/.gem_release.yml', YAML.dump(global) }
         it { should eq xdg_config }
       end
-      describe 'XDG_CONFIG_HOME set to /conf' do
-        env XDG_CONFIG_HOME: '/conf'
-        before { write '/conf/.gem_release.yml', YAML.dump(xdg_config) }
+      describe 'XDG_CONFIG_HOME set to ~/.my-little-config' do
+        env XDG_CONFIG_HOME: '~/.my-little-config'
+        before { write '~/.my-little-config/.gem_release.yml', YAML.dump(xdg_config) }
         before { write '~/.gem_release.yml', YAML.dump(global) }
         it { should eq xdg_config }
       end
