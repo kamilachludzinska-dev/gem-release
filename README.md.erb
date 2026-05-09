@@ -47,8 +47,12 @@ these locations:
 
 * `~/.gem_release/config.yml`
 * `~/.gem_release.yml`
+* `$XDG_CONFIG_HOME/.gem_release/config.yml`
+* `$XDG_CONFIG_HOME/.gem_release.yml`
 * `./.gem_release/config.yml`
 * `./.gem_release.yml`
+
+`$XDG_CONFIG_HOME` defaults to `~/.config` if not set.
 
 Config files must be in the [YAML](http://www.yaml.org/) format, and list
 options per command. Common options can be set on the root.
