@@ -43,14 +43,14 @@ gem install gem-release
 # Configuration
 
 Defaults for all options can be specified in a config file at either one of
-these locations:
+these locations in this specific order:
 
-* `~/.gem_release/config.yml`
-* `~/.gem_release.yml`
-* `$XDG_CONFIG_HOME/.gem_release/config.yml`
-* `$XDG_CONFIG_HOME/.gem_release.yml`
-* `./.gem_release/config.yml`
-* `./.gem_release.yml`
+* ./.gem_release/config.yml
+* ./.gem_release.yml
+* $XDG_CONFIG_HOME/.gem_release/config.yml
+* $XDG_CONFIG_HOME/.gem_release.yml
+* ~/.gem_release/config.yml
+* ~/.gem_release.yml
 
 `$XDG_CONFIG_HOME` defaults to `~/.config` if not set.
 

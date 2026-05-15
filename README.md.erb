@@ -45,6 +45,7 @@ gem install gem-release
 Defaults for all options can be specified in a config file at either one of
 these locations in this specific order:
 
+<% class Gem::Release::Config::Files; def xdg_config_home; '$XDG_CONFIG_HOME/'; end; end -%>
 <% Gem::Release::Config::Files.new.combine_paths.map do |path| -%>
 * <%= path %>
 <% end %>
