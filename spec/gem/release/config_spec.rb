@@ -1,7 +1,7 @@
 describe Gem::Release::Config do
-  let(:global) { { bump: { commit: false }, tag: { push: false }, quiet: true } }
-  let(:local)  { { bump: { commit: true, push: true }, quiet: false } }
-  let(:xdg_config)    { { quiet: true, release: { host: 'https://example.com' } } }
+  let(:global) { { release: { host: 'https://example.com/global' } } }
+  let(:local) { { release: { host: 'https://example.com/local' } } }
+  let(:xdg_config) { { release: { host: 'https://example.com/xdg' } } }
 
   subject { described_class.new.opts }
 
